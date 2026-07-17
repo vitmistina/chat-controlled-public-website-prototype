@@ -11,7 +11,7 @@ Astro prototype for a small Czech construction company and showroom. The reposit
 - LocalBusiness, Service and Article structured data
 - Sitemap, robots.txt and an experimental llms.txt
 - GitHub Actions build validation
-- Cloudflare Pages security headers
+- Cloudflare static asset security headers
 - `AGENTS.md` guardrails for chat-controlled edits
 
 ## Run locally
@@ -27,17 +27,18 @@ Production build:
 npm run build
 ```
 
-## Cloudflare Pages
+## Cloudflare Workers
 
-Connect the GitHub repository in Cloudflare Pages and configure:
+Connect the GitHub repository using Cloudflare Workers Builds and configure:
 
 | Setting | Value |
 |---|---|
-| Framework preset | Astro |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
+| Deploy command | `npx wrangler deploy` |
 | Node.js version | `22` |
 | Production branch | `main` |
+
+The checked-in `wrangler.jsonc` deploys the generated `dist` directory as static assets. The `@astrojs/cloudflare` adapter is not required while the site remains fully static.
 
 Update the `site` value in `astro.config.mjs` before connecting the real domain. The robots route derives the sitemap URL automatically.
 
