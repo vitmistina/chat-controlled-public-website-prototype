@@ -1,0 +1,22 @@
+---
+import { company } from '../data/company';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h2>{company.name}</h2>
+        <p>{company.tagline}</p>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <p><a href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a><br /><a href={`mailto:${company.email}`}>{company.email}</a></p>
+      </div>
+      <div>
+        <h3>Showroom</h3>
+        <p>{company.address.street}<br />{company.address.postalCode} {company.address.city}</p>
+      </div>
+    </div>
+    <small>© {new Date().getFullYear()} {company.name}. Prototyp s ukázkovými údaji a licencovanými stock fotografiemi.</small>
+  </div>
+</footer>

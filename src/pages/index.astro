@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { company, services } from '../data/company';
+
+const projects = (await getCollection('realizace'))
+  .filter((project) => project.data.featured)
+  .slice(0, 3);
+---
+<BaseLayout title={company.name} description={company.description}>
+  <section class="hero">
+    <div class="hero__copy">
+      <p class="eyebrow">Týniště nad Orlicí a okolí</p>
+      <h1 class="display">Prostor, který bude fungovat i za deset let.</h1>
+      <p class="lead">Rekonstrukce koupelen a interiérů, přesné řemeslo a showroom materiálů pod jednou střechou.</p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href={`tel:${company.phoneHref}`}>Nezávazně zavolat</a>
+        <a class="btn btn--ghost" style="color:white;border-color:white" href="/realizace">Prohlédnout realizace</a>
+      </div>
+    </div>
+    <div class="hero__media">
+      <img src="https://images.pexels.com/photos/16113325/pexels-photo-16113325.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Moderní koupelna s mramorovým obkladem, vanou a sprchovým koutem" width="1200" height="1600" fetchpriority="high" referrerpolicy="no-referrer" />
+      <div class="hero__badge">Showroom v Týništi nad Orlicí</div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <p class="eyebrow">Co umíme</p>
+      <div class="split" style="align-items:end">
+        <h2 class="h2">Jeden partner od prvního návrhu po poslední detail.</h2>
+        <p class="lead">Nespojujeme zákazníka s anonymním katalogem řemesel. Pomůžeme vybrat řešení, sladit materiály a koordinovat samotnou realizaci.</p>
+      </div>
+      <div class="grid grid--2" style="margin-top:3rem">
+        {services.map((service, index) => (
+          <article class="card service-card">
+            <span class="service-card__number">0{index + 1}</span>
+            <div>
+              <h3>{service.title}</h3>
+              <p>{service.lead}</p>
+              <p style="margin-top:1rem"><a href={`/sluzby/${service.slug}`}>Zjistit více</a></p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/24357101/pexels-photo-24357101.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Dva řemeslníci při přesném obkládání koupelny" loading="lazy" width="1200" height="900" referrerpolicy="no-referrer" />
+      </div>
+      <div>
+        <p class="eyebrow">Jak pracujeme</p>
+        <h2 class="h2">Přesná domluva je stejně důležitá jako přesný řez.</h2>
+        <p class="lead">Předem vysvětlíme rozsah, návaznosti i rozhodnutí, která bude potřeba udělat. Během realizace víte, co se děje a co přijde dál.</p>
+        <div class="stats">
+          <div class="stat"><strong>1 kontakt</strong><span>pro koordinaci zakázky</span></div>
+          <div class="stat"><strong>Jasný rozsah</strong><span>bez mlhavých položek</span></div>
+          <div class="stat"><strong>Lokálně</strong><span>Orlicko a Hradecko</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <p class="eyebrow">Průběh spolupráce</p>
+      <h2 class="h2">Od první návštěvy k hotovému prostoru.</h2>
+      <div class="steps" style="margin-top:3rem">
+        <article class="step"><h3>Konzultace</h3><p>Probereme prostor, priority, rozpočet a termín.</p></article>
+        <article class="step"><h3>Výběr řešení</h3><p>V showroomu sladíme materiály, sanitu a detaily.</p></article>
+        <article class="step"><h3>Realizace</h3><p>Zajistíme návaznosti prací a průběžnou komunikaci.</p></article>
+        <article class="step"><h3>Předání</h3><p>Hotovou práci projdeme, vysvětlíme a předáme.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <p class="eyebrow">Vybrané realizace</p>
+      <div class="split" style="align-items:end">
+        <h2 class="h2">Skutečná práce je lepší než marketingová mlha.</h2>
+        <p><a class="btn btn--ghost" href="/realizace">Všechny realizace</a></p>
+      </div>
+      <div class="grid grid--3" style="margin-top:3rem">
+        {projects.map((project) => (
+          <ProjectCard slug={project.id} title={project.data.title} description={project.data.description} location={project.data.location} image={project.data.coverImage} alt={project.data.coverAlt} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-panel split">
+      <div>
+        <p class="eyebrow" style="color:#f4a06e">Máte konkrétní prostor?</p>
+        <h2 class="h2">Začněme krátkou domluvou, ne dlouhým formulářem.</h2>
+      </div>
+      <div>
+        <p class="lead">Zavolejte nebo pošlete e-mail. Stačí lokalita, typ práce a přibližný termín.</p>
+        <p><a class="btn btn--light" href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

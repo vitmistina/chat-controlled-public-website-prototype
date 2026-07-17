@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services, company } from '../../data/company';
+
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+const { service } = Astro.props;
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  description: service.description,
+  areaServed: company.areaServed,
+  provider: { '@type': 'HomeAndConstructionBusiness', name: company.name }
+};
+---
+<BaseLayout title={service.title} description={`${service.description} Týniště nad Orlicí, Rychnov nad Kněžnou, Hradec Králové a okolí.`} jsonLd={serviceSchema}>
+  <header class="page-hero container">
+    <p class="breadcrumbs"><a href="/">Domů</a> / <a href="/sluzby">Služby</a> / {service.title}</p>
+    <p class="eyebrow">{service.lead}</p>
+    <h1 class="display">{service.title}</h1>
+    <p class="lead">{service.description}</p>
+  </header>
+  <section class="section section--white">
+    <div class="container split">
+      <div class="prose">
+        <h2>Co může být součástí zakázky</h2>
+        <ul>
+          <li>Zaměření a praktická konzultace řešení.</li>
+          <li>Příprava rozpočtu a posloupnosti jednotlivých prací.</li>
+          <li>Dodávka nebo koordinace materiálů a navazujících profesí.</li>
+          <li>Průběžná komunikace a závěrečné předání.</li>
+        </ul>
+        <h2>Kde pracujeme</h2>
+        <p>{company.areaServed.join(', ')} a okolní obce podle rozsahu zakázky.</p>
+        <p><a class="btn" href={`tel:${company.phoneHref}`}>Probrat zakázku po telefonu</a></p>
+      </div>
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/32990521/pexels-photo-32990521.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Řemeslník uvnitř rekonstruovaného domu" loading="lazy" width="1200" height="900" referrerpolicy="no-referrer" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

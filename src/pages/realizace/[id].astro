@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('realizace');
+  return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: project.data.title,
+  description: project.data.description,
+  image: project.data.coverImage,
+  datePublished: `${project.data.completedAt}-01`,
+  about: project.data.services,
+  contentLocation: { '@type': 'Place', name: project.data.location }
+};
+---
+<BaseLayout title={project.data.title} description={project.data.description} image={project.data.coverImage} jsonLd={projectSchema}>
+  <header class="page-hero container">
+    <p class="breadcrumbs"><a href="/">Domů</a> / <a href="/realizace">Realizace</a> / {project.data.title}</p>
+    <p class="eyebrow">{project.data.location} · {project.data.completedAt}</p>
+    <h1 class="display">{project.data.title}</h1>
+    <p class="lead">{project.data.description}</p>
+    <div class="project-meta">{project.data.services.map((service) => <span class="tag">{service}</span>)}</div>
+  </header>
+  <section class="section section--white">
+    <div class="container">
+      <div class="split__media"><img src={project.data.coverImage} alt={project.data.coverAlt} width="1600" height="1000" referrerpolicy="no-referrer" /></div>
+      <article class="prose" style="margin-top:3rem"><Content /></article>
+    </div>
+  </section>
+</BaseLayout>

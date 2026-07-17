@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { company } from '../data/company';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalPath?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  image = 'https://images.pexels.com/photos/16113325/pexels-photo-16113325.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  canonicalPath = Astro.url.pathname,
+  jsonLd
+} = Astro.props;
+
+const canonical = new URL(canonicalPath, Astro.site);
+const fullTitle = title === company.name ? title : `${title} | ${company.name}`;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': ['HomeAndConstructionBusiness', 'Store'],
+  name: company.name,
+  legalName: company.legalName,
+  description: company.description,
+  url: Astro.site?.toString(),
+  telephone: company.phoneHref,
+  email: company.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.address.street,
+    addressLocality: company.address.city,
+    postalCode: company.address.postalCode,
+    addressCountry: company.address.country
+  },
+  areaServed: company.areaServed.map((name) => ({ '@type': 'City', name })),
+  image
+};
+
+const schemas = jsonLd ? [localBusiness, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : [localBusiness];
+---
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#174c38" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

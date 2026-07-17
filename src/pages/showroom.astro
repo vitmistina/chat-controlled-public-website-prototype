@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { company } from '../data/company';
+---
+<BaseLayout title="Showroom koupelen a interiérů" description="Showroom obkladů, dlažeb, sanity a materiálů v Týništi nad Orlicí. Prohlédněte si kombinace v reálném světle a proberte je s řemeslníkem.">
+  <header class="page-hero container">
+    <p class="breadcrumbs"><a href="/">Domů</a> / Showroom</p>
+    <p class="eyebrow">Showroom v Týništi nad Orlicí</p>
+    <h1 class="display">Materiál musí fungovat v ruce, ne jen na obrázku.</h1>
+    <p class="lead">Porovnejte obklady, povrchy a sanitu vedle sebe. Pomůžeme oddělit nadčasovou volbu od efektního detailu, který se po půl roce omrzí.</p>
+  </header>
+  <section class="section section--white">
+    <div class="container split">
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/19192263/pexels-photo-19192263.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Moderní interiérový showroom s kuchyňskými povrchy a vzorky materiálů" loading="lazy" width="1400" height="1000" referrerpolicy="no-referrer" />
+      </div>
+      <div>
+        <p class="eyebrow">Před návštěvou</p>
+        <h2 class="h2">Vezměte půdorys, fotografie a přibližný rozpočet.</h2>
+        <p class="lead">Čím konkrétnější vstupy přinesete, tím rychleji zúžíme výběr na varianty, které mají technický i finanční smysl.</p>
+        <p><a class="btn" href={`tel:${company.phoneHref}`}>Domluvit návštěvu</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid grid--3">
+      <article class="card card__body"><h2>Obklady a dlažby</h2><p>Formáty, povrchy, spáry a kombinace pro koupelny i obytné prostory.</p></article>
+      <article class="card card__body"><h2>Sanita a vybavení</h2><p>Praktické porovnání rozměrů, ergonomie a návazností na instalace.</p></article>
+      <article class="card card__body"><h2>Konzultace realizace</h2><p>Nejen co vypadá dobře, ale také co lze rozumně postavit a udržovat.</p></article>
+    </div>
+  </section>
+</BaseLayout>

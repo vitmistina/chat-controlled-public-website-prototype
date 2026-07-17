@@ -1,0 +1,30 @@
+---
+import { company } from '../data/company';
+
+const nav = [
+  ['Služby', '/sluzby'],
+  ['Showroom', '/showroom'],
+  ['Realizace', '/realizace'],
+  ['Kontakt', '/kontakt']
+];
+---
+<div class="demo-ribbon">DEMO PROTOTYP: kontakty, název firmy, reference a fotografie je nutné před zveřejněním nahradit.</div>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/" aria-label={`${company.name}, domů`}>
+      <span class="brand__mark" aria-hidden="true">OS</span>
+      <span class="brand__text">ORLICE <span>STAVBY & INTERIÉRY</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Hlavní navigace">
+      {nav.map(([label, href]) => <a href={href}>{label}</a>)}
+      <a class="btn" href={`tel:${company.phoneHref}`}>Zavolat</a>
+    </nav>
+    <details>
+      <summary>Menu</summary>
+      <nav class="mobile-menu" aria-label="Mobilní navigace">
+        {nav.map(([label, href]) => <a href={href}>{label}</a>)}
+        <a href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a>
+      </nav>
+    </details>
+  </div>
+</header>
