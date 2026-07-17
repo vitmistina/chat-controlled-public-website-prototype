@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+const projects = (await getCollection('realizace')).sort((a, b) => b.data.completedAt.localeCompare(a.data.completedAt));
+---
+<BaseLayout title="Realizace" description="Ukázky rekonstrukcí koupelen, interiérů, obkladů a stavebních prací v Týništi nad Orlicí, Rychnově a Hradci Králové.">
+  <header class="page-hero container">
+    <p class="breadcrumbs"><a href="/">Domů</a> / Realizace</p>
+    <p class="eyebrow">Reference</p>
+    <h1 class="display">Prostory, kde je vidět výsledek i přemýšlení.</h1>
+    <p class="lead">Ukázkové realizace v prototypu používají stock fotografie. V ostré verzi je nahradí skutečná práce firmy, průběh zakázky a ověřitelné lokality.</p>
+  </header>
+  <section class="section section--white">
+    <div class="container grid grid--3">
+      {projects.map((project) => <ProjectCard slug={project.id} title={project.data.title} description={project.data.description} location={project.data.location} image={project.data.coverImage} alt={project.data.coverAlt} />)}
+    </div>
+  </section>
+</BaseLayout>

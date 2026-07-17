@@ -1,0 +1,16 @@
+# Orlice Stavby & Interiéry
+
+> Demo web lokální stavební firmy a showroomu v Týništi nad Orlicí.
+
+## Hlavní informace
+
+- Služby: rekonstrukce koupelen, rekonstrukce interiérů, obklady a dlažby, showroom materiálů
+- Lokalita: Týniště nad Orlicí, Kostelec nad Orlicí, Rychnov nad Kněžnou, Hradec Králové, Holice
+- Kontakt: údaje na tomto prototypu jsou pouze ukázkové a musí být nahrazeny
+
+## Důležité stránky
+
+- /sluzby
+- /showroom
+- /realizace
+- /kontakt
