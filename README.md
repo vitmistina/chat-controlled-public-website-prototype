@@ -29,16 +29,35 @@ npm run build
 
 ## Cloudflare Workers
 
-Connect the GitHub repository using Cloudflare Workers Builds and configure:
+Connect the GitHub repository to the existing Cloudflare Worker using Workers Builds.
 
-| Setting | Value |
-|---|---|
-| Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
-| Node.js version | `22` |
-| Production branch | `main` |
+### Build configuration
 
-The checked-in `wrangler.jsonc` deploys the generated `dist` directory as static assets. The `@astrojs/cloudflare` adapter is not required while the site remains fully static.
+| Setting | Production (`main`) | Preview branches |
+|---|---|---|
+| Build command | `npm run build` | `npm run build` |
+| Deploy command | `npx wrangler deploy` | `npx wrangler versions upload` |
+| Node.js version | `22` | `22` |
+| Branch | `main` | Every non-production branch |
+
+In the Cloudflare dashboard:
+
+1. Open the Worker and go to **Settings > Build > Branch control**.
+2. Set the production branch to `main`.
+3. Enable **Builds for non-production branches**.
+4. Keep the production deploy command as `npx wrangler deploy`.
+5. Keep the preview deploy command as `npx wrangler versions upload`.
+
+The checked-in `wrangler.jsonc` explicitly enables both the production `workers.dev` route and preview URLs. A push to `main` therefore updates the Worker’s normal production hostname and any custom domain attached under **Settings > Domains & Routes**. A push to another branch uploads a version without promoting it to production.
+
+Cloudflare creates two preview links for branch builds:
+
+- a stable branch alias such as `<branch>-chat-controlled-public-website-prototype.<account>.workers.dev`
+- a commit-specific version URL
+
+When the branch has an open pull request, Cloudflare posts the preview links directly into the pull request. Worker preview URLs currently use `workers.dev`; they cannot use a separate custom preview subdomain.
+
+The generated `dist` directory is deployed as static assets. The `@astrojs/cloudflare` adapter is not required while the site remains fully static.
 
 Update the `site` value in `astro.config.mjs` before connecting the real domain. The robots route derives the sitemap URL automatically.
 
