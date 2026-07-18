@@ -7,6 +7,29 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+const serviceImages: Record<string, { src: string; alt: string }> = {
+  'interierove-dvere-a-zarubne': {
+    src: '/images/doors-interior.jpg',
+    alt: 'Otevřené interiérové dveře ve světlém moderním prostoru'
+  },
+  'okna-a-vchodove-dvere': {
+    src: '/images/windows-and-floor.jpg',
+    alt: 'Světlý interiér s velkými okny, dveřmi a dřevěnou podlahou'
+  },
+  podlahy: {
+    src: '/images/wood-floor.jpg',
+    alt: 'Detail přirozené kresby dřevěné podlahy'
+  },
+  'dverni-kovani': {
+    src: '/images/doors-interior.jpg',
+    alt: 'Interiérové dveře s klikou v moderním prostoru'
+  }
+};
+const serviceImage = serviceImages[service.slug] ?? {
+  src: '/images/showroom-interior.jpg',
+  alt: 'Interiér s dveřmi, okny a dřevěnou podlahou'
+};
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -16,7 +39,7 @@ const serviceSchema = {
   provider: { '@type': 'Store', name: company.name }
 };
 ---
-<BaseLayout title={`${service.title} | showroom Týniště nad Orlicí`} description={`${service.description} Navštivte showroom MK Dveře na Mostecké 24 v Týništi nad Orlicí.`} jsonLd={serviceSchema}>
+<BaseLayout title={`${service.title} | showroom Týniště nad Orlicí`} description={`${service.description} Navštivte showroom MK Dveře na Mostecké 24 v Týništi nad Orlicí.`} jsonLd={serviceSchema} image={serviceImage.src}>
   <header class="page-hero container">
     <p class="breadcrumbs"><a href="/">Domů</a> / <a href="/sluzby">Sortiment</a> / {service.title}</p>
     <p class="eyebrow">Showroom v Týništi nad Orlicí</p>
@@ -38,6 +61,13 @@ const serviceSchema = {
         <p>Showroom MK Dveře, {company.address.street}, {company.address.postalCode} {company.address.city}.</p>
         <p><a class="btn" href={`tel:${company.phoneHref}`}>Domluvit návštěvu showroomu</a></p>
       </div>
+      <div class="split__media">
+        <img src={serviceImage.src} alt={serviceImage.alt} loading="eager" width="1600" height="1100" />
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container split">
       <div class="map-card">
         <iframe
           src={company.links.googleMapsEmbed}
@@ -45,6 +75,12 @@ const serviceSchema = {
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen></iframe>
+      </div>
+      <div>
+        <p class="eyebrow">Mostecká 24</p>
+        <h2 class="h2">Sortiment si prohlédnete v showroomu MK Dveře.</h2>
+        <p class="lead">Před cestou doporučujeme zavolat a domluvit čas návštěvy, zejména pokud chcete podrobnější konzultaci konkrétního projektu.</p>
+        <p><a class="btn" href={company.links.googleMaps} target="_blank" rel="noreferrer">Navigovat do showroomu</a></p>
       </div>
     </div>
   </section>
