@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 const projects = (await getCollection('realizace')).sort((a, b) => b.data.completedAt.localeCompare(a.data.completedAt));
 ---
-<BaseLayout title="Realizace" description="Ukázky rekonstrukcí koupelen, interiérů, obkladů a stavebních prací v Týništi nad Orlicí, Rychnově a Hradci Králové.">
+<BaseLayout noindex={true} title="Realizace" description="Ukázky rekonstrukcí koupelen, interiérů, obkladů a stavebních prací v Týništi nad Orlicí, Rychnově a Hradci Králové.">
   <header class="page-hero container">
     <p class="breadcrumbs"><a href="/">Domů</a> / Realizace</p>
     <p class="eyebrow">Reference</p>
