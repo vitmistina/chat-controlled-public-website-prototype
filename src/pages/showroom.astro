@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { company } from '../data/company';
 ---
-<BaseLayout title="Showroom dveří, oken a podlah v Týništi nad Orlicí" description="Navštivte showroom MK Dveře na Mostecké 24 v Týništi nad Orlicí. Na 500 m² najdete přes 70 vystavených dveří a setů, okna, podlahy a kování.">
+<BaseLayout title="Showroom dveří, oken a podlah v Týništi nad Orlicí" description="Navštivte showroom MK Dveře na Mostecké 24 v Týništi nad Orlicí. Na 500 m² najdete přes 70 vystavených dveří a setů, okna, podlahy a kování." image="/images/showroom-interior.jpg">
   <header class="page-hero container">
     <p class="breadcrumbs"><a href="/">Domů</a> / Showroom</p>
     <p class="eyebrow">Mostecká 24, Týniště nad Orlicí</p>
@@ -12,13 +12,13 @@ import { company } from '../data/company';
 
   <section class="section section--white">
     <div class="container split">
-      <div class="map-card">
-        <iframe
-          src={company.links.googleMapsEmbed}
-          title="MK Dveře na Google Maps"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen></iframe>
+      <div class="split__media">
+        <img
+          src="/images/showroom-interior.jpg"
+          alt="Interiér s dveřmi, velkými okny a dřevěnou podlahou jako ilustrační ukázka sortimentu showroomu"
+          loading="eager"
+          width="1800"
+          height="1200" />
       </div>
       <div>
         <p class="eyebrow">Co uvidíte naživo</p>
@@ -36,9 +36,18 @@ import { company } from '../data/company';
 
   <section class="section">
     <div class="container grid grid--3">
-      <article class="card card__body"><h2>Dveře a zárubně</h2><p>Prohlédněte si různé dekory, prosklení, konstrukce a typy zárubní v reálném prostoru.</p></article>
-      <article class="card card__body"><h2>Okna a podlahy</h2><p>Porovnejte povrchy, barevnost a návaznosti prvků, které budou v interiéru fungovat společně.</p></article>
-      <article class="card card__body"><h2>Kování a detaily</h2><p>Vyberte kliky a další detaily nejen podle vzhledu, ale také podle každodenního používání.</p></article>
+      <article class="card">
+        <img src="/images/doors-interior.jpg" alt="Otevřené interiérové dveře ve světlém moderním prostoru" loading="lazy" width="1200" height="900" />
+        <div class="card__body"><h2>Dveře a zárubně</h2><p>Prohlédněte si různé dekory, prosklení, konstrukce a typy zárubní v reálném prostoru.</p></div>
+      </article>
+      <article class="card">
+        <img src="/images/windows-and-floor.jpg" alt="Světlý interiér s velkými okny a dřevěnou podlahou" loading="lazy" width="1200" height="900" />
+        <div class="card__body"><h2>Okna a podlahy</h2><p>Porovnejte povrchy, barevnost a návaznosti prvků, které budou v interiéru fungovat společně.</p></div>
+      </article>
+      <article class="card">
+        <img src="/images/wood-floor.jpg" alt="Detail struktury a kresby dřevěné podlahy" loading="lazy" width="1200" height="900" />
+        <div class="card__body"><h2>Kování a detaily</h2><p>Vyberte kliky a další detaily nejen podle vzhledu, ale také podle každodenního používání.</p></div>
+      </article>
     </div>
   </section>
 
@@ -57,14 +66,20 @@ import { company } from '../data/company';
 
   <section class="section section--white">
     <div class="container split">
-      <div>
-        <p class="eyebrow">Fotografie a nezávislé profily</p>
-        <h2 class="h2">Podívejte se na showroom ještě před cestou.</h2>
+      <div class="map-card">
+        <iframe
+          src={company.links.googleMapsEmbed}
+          title="MK Dveře na Google Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
       </div>
       <div>
-        <p class="lead">Aktuální fotografie provozovny jsou dostupné na firemních profilech. Obrázky z externích katalogů na web nekopírujeme ani nehotlinkujeme; odkazujeme přímo na jejich oficiální galerii.</p>
+        <p class="eyebrow">Poloha a aktuální fotografie</p>
+        <h2 class="h2">Podívejte se na provozovnu a naplánujte cestu.</h2>
+        <p class="lead">Mapa ukazuje přesnou polohu showroomu. Aktuální fotografie skutečné provozovny najdete na oficiálních firemních profilech.</p>
         <p class="link-row">
-          <a class="btn" href={company.links.googleMaps} target="_blank" rel="noreferrer">Fotografie na Google Maps</a>
+          <a class="btn" href={company.links.googleMaps} target="_blank" rel="noreferrer">Google Maps a fotografie</a>
           <a class="btn btn--ghost" href={company.links.firmy} target="_blank" rel="noreferrer">Profil na Firmy.cz</a>
         </p>
       </div>
