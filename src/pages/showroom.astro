@@ -2,31 +2,87 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { company } from '../data/company';
 ---
-<BaseLayout title="Showroom koupelen a interiérů" description="Showroom obkladů, dlažeb, sanity a materiálů v Týništi nad Orlicí. Prohlédněte si kombinace v reálném světle a proberte je s řemeslníkem.">
+<BaseLayout title="Showroom dveří, oken a podlah v Týništi nad Orlicí" description="Navštivte showroom MK Dveře na Mostecké 24 v Týništi nad Orlicí. Na 500 m² najdete přes 70 vystavených dveří a setů, okna, podlahy a kování." image="/images/showroom-interior.jpg">
   <header class="page-hero container">
     <p class="breadcrumbs"><a href="/">Domů</a> / Showroom</p>
-    <p class="eyebrow">Showroom v Týništi nad Orlicí</p>
-    <h1 class="display">Materiál musí fungovat v ruce, ne jen na obrázku.</h1>
-    <p class="lead">Porovnejte obklady, povrchy a sanitu vedle sebe. Pomůžeme oddělit nadčasovou volbu od efektního detailu, který se po půl roce omrzí.</p>
+    <p class="eyebrow">Mostecká 24, Týniště nad Orlicí</p>
+    <h1 class="display">Showroom dveří, oken a podlah v Týništi nad Orlicí</h1>
+    <p class="lead">Jeden z největších showroomů tohoto zaměření v regionu nabízí na ploše 500 m² více než 70 vystavených dveří a setů, široký výběr kování, oken a podlah.</p>
   </header>
+
   <section class="section section--white">
     <div class="container split">
       <div class="split__media">
-        <img src="https://images.pexels.com/photos/19192263/pexels-photo-19192263.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Moderní interiérový showroom s kuchyňskými povrchy a vzorky materiálů" loading="lazy" width="1400" height="1000" referrerpolicy="no-referrer" />
+        <img
+          src="/images/showroom-interior.jpg"
+          alt="Interiér s dveřmi, velkými okny a dřevěnou podlahou jako ilustrační ukázka sortimentu showroomu"
+          loading="eager"
+          width="1800"
+          height="1200" />
       </div>
       <div>
-        <p class="eyebrow">Před návštěvou</p>
-        <h2 class="h2">Vezměte půdorys, fotografie a přibližný rozpočet.</h2>
-        <p class="lead">Čím konkrétnější vstupy přinesete, tím rychleji zúžíme výběr na varianty, které mají technický i finanční smysl.</p>
-        <p><a class="btn" href={`tel:${company.phoneHref}`}>Domluvit návštěvu</a></p>
+        <p class="eyebrow">Co uvidíte naživo</p>
+        <h2 class="h2">Více než sedmdesát dveří a setů v reálném měřítku.</h2>
+        <p class="lead">Porovnejte barvy, struktury, zárubně, kliky a návaznost na podlahu. Vystavené produkty ukážou podstatně víc než drobný vzorek nebo vizualizace na monitoru.</p>
+        <ul class="feature-list">
+          <li>interiérové a vchodové dveře</li>
+          <li>zárubně a dveřní kování</li>
+          <li>okna a související řešení</li>
+          <li>podlahy a vzorky povrchů</li>
+        </ul>
       </div>
     </div>
   </section>
+
   <section class="section">
     <div class="container grid grid--3">
-      <article class="card card__body"><h2>Obklady a dlažby</h2><p>Formáty, povrchy, spáry a kombinace pro koupelny i obytné prostory.</p></article>
-      <article class="card card__body"><h2>Sanita a vybavení</h2><p>Praktické porovnání rozměrů, ergonomie a návazností na instalace.</p></article>
-      <article class="card card__body"><h2>Konzultace realizace</h2><p>Nejen co vypadá dobře, ale také co lze rozumně postavit a udržovat.</p></article>
+      <article class="card">
+        <img src="/images/doors-interior.jpg" alt="Otevřené interiérové dveře ve světlém moderním prostoru" loading="lazy" width="1200" height="900" />
+        <div class="card__body"><h2>Dveře a zárubně</h2><p>Prohlédněte si různé dekory, prosklení, konstrukce a typy zárubní v reálném prostoru.</p></div>
+      </article>
+      <article class="card">
+        <img src="/images/windows-and-floor.jpg" alt="Světlý interiér s velkými okny a dřevěnou podlahou" loading="lazy" width="1200" height="900" />
+        <div class="card__body"><h2>Okna a podlahy</h2><p>Porovnejte povrchy, barevnost a návaznosti prvků, které budou v interiéru fungovat společně.</p></div>
+      </article>
+      <article class="card">
+        <img src="/images/wood-floor.jpg" alt="Detail struktury a kresby dřevěné podlahy" loading="lazy" width="1200" height="900" />
+        <div class="card__body"><h2>Kování a detaily</h2><p>Vyberte kliky a další detaily nejen podle vzhledu, ale také podle každodenního používání.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Před návštěvou</p>
+        <h2 class="h2">Přineste rozměry, fotografie a představu o prostoru.</h2>
+      </div>
+      <div>
+        <p class="lead">Čím konkrétnější podklady přinesete, tím snáze lze porovnat vhodné varianty. {company.visitNote}</p>
+        <p><a class="btn btn--light" href={`tel:${company.phoneHref}`}>Domluvit návštěvu: {company.phoneDisplay}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container split">
+      <div class="map-card">
+        <iframe
+          src={company.links.googleMapsEmbed}
+          title="MK Dveře na Google Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+      <div>
+        <p class="eyebrow">Poloha a aktuální fotografie</p>
+        <h2 class="h2">Podívejte se na provozovnu a naplánujte cestu.</h2>
+        <p class="lead">Mapa ukazuje přesnou polohu showroomu. Aktuální fotografie skutečné provozovny najdete na oficiálních firemních profilech.</p>
+        <p class="link-row">
+          <a class="btn" href={company.links.googleMaps} target="_blank" rel="noreferrer">Google Maps a fotografie</a>
+          <a class="btn btn--ghost" href={company.links.firmy} target="_blank" rel="noreferrer">Profil na Firmy.cz</a>
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>

@@ -2,38 +2,53 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { company } from '../data/company';
 ---
-<BaseLayout title="Kontakt a showroom" description={`Kontakt na ${company.name}, telefon, e-mail, adresa showroomu a otevírací doba v Týništi nad Orlicí.`}>
+<BaseLayout title="Kontakt a showroom MK Dveře" description={`Kontakt na ${company.name}: telefon, e-mail a adresa showroomu dveří, oken a podlah v Týništi nad Orlicí.`}>
   <header class="page-hero container">
     <p class="breadcrumbs"><a href="/">Domů</a> / Kontakt</p>
-    <p class="eyebrow">Kontakt</p>
-    <h1 class="display">Řekněte nám, co potřebujete změnit.</h1>
-    <p class="lead">Pro první domluvu stačí telefon nebo e-mail. Uveďte lokalitu, typ prostoru, přibližný rozsah a plánovaný termín.</p>
+    <p class="eyebrow">Kontakt MK Dveře</p>
+    <h1 class="display">Showroom na Mostecké 24 v Týništi nad Orlicí</h1>
+    <p class="lead">Potřebujete vybrat dveře, okna, podlahu nebo kování? Zavolejte, napište nebo si naplánujte cestu do showroomu.</p>
   </header>
+
   <section class="section section--white">
     <div class="container split">
       <div class="contact-panel">
-        <h2>Rychlý kontakt</h2>
+        <h2>Kontakt</h2>
         <ul class="contact-list">
           <li><strong>Telefon</strong><br /><a href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a></li>
           <li><strong>E-mail</strong><br /><a href={`mailto:${company.email}`}>{company.email}</a></li>
           <li><strong>Showroom</strong><br />{company.address.street}<br />{company.address.postalCode} {company.address.city}</li>
-          <li><strong>IČO</strong><br />{company.ico}</li>
+          <li><strong>Provozovatel</strong><br />{company.legalName}<br />IČO {company.ico}</li>
         </ul>
       </div>
       <div>
-        <p class="eyebrow">Otevírací doba</p>
-        <h2 class="h2">Návštěvu showroomu je nejlepší domluvit předem.</h2>
-        <table class="hours" style="margin-top:2rem"><tbody>{company.openingHours.map(([day, hours]) => <tr><td>{day}</td><td>{hours}</td></tr>)}</tbody></table>
-        <p style="margin-top:2rem"><a class="btn" href={`tel:${company.phoneHref}`}>Zavolat a domluvit návštěvu</a></p>
+        <p class="eyebrow">Návštěva showroomu</p>
+        <h2 class="h2">Před cestou doporučujeme krátkou telefonickou domluvu.</h2>
+        <p class="lead">{company.visitNote} Ověříte tak vhodný čas pro konzultaci a můžete předem popsat, zda řešíte interiérové dveře, okna, podlahu nebo celý soubor prvků.</p>
+        <p><a class="btn" href={`tel:${company.phoneHref}`}>Zavolat {company.phoneDisplay}</a></p>
       </div>
     </div>
   </section>
+
   <section class="section">
-    <div class="container">
-      <p class="eyebrow">Oblast působnosti</p>
-      <h2 class="h2">Týniště nad Orlicí, Orlicko a Hradecko.</h2>
-      <p class="lead">{company.areaServed.join(', ')}. U větších zakázek se domluvíme také na vzdálenější lokalitě.</p>
-      <p><a href="https://www.google.com/maps/search/?api=1&query=T%C3%BDni%C5%A1t%C4%9B+nad+Orlic%C3%AD" target="_blank" rel="noreferrer">Otevřít Týniště nad Orlicí v Google Maps</a></p>
+    <div class="container split">
+      <div class="map-card">
+        <iframe
+          src={company.links.googleMapsEmbed}
+          title="Cesta do showroomu MK Dveře v Týništi nad Orlicí"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+      <div>
+        <p class="eyebrow">Kde nás najdete</p>
+        <h2 class="h2">Mostecká 24, Týniště nad Orlicí.</h2>
+        <p class="lead">Showroom je dostupný také zákazníkům z Kostelce nad Orlicí, Rychnova nad Kněžnou, Hradce Králové a dalších míst v regionu.</p>
+        <p class="link-row">
+          <a class="btn" href={company.links.googleMaps} target="_blank" rel="noreferrer">Spustit navigaci</a>
+          <a class="btn btn--ghost" href={company.links.firmy} target="_blank" rel="noreferrer">Otevřít Firmy.cz</a>
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>

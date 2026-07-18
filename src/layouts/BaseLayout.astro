@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/mk-dvere.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { company } from '../data/company';
@@ -10,28 +11,36 @@ interface Props {
   image?: string;
   canonicalPath?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
 }
 
 const {
   title,
   description,
-  image = 'https://images.pexels.com/photos/16113325/pexels-photo-16113325.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  image = '/images/showroom-interior.jpg',
   canonicalPath = Astro.url.pathname,
-  jsonLd
+  jsonLd,
+  noindex = false
 } = Astro.props;
 
 const canonical = new URL(canonicalPath, Astro.site);
 const fullTitle = title === company.name ? title : `${title} | ${company.name}`;
+const absoluteImage = new URL(image, Astro.site).toString();
 
 const localBusiness = {
   '@context': 'https://schema.org',
-  '@type': ['HomeAndConstructionBusiness', 'Store'],
+  '@type': ['Store', 'HomeGoodsStore'],
   name: company.name,
   legalName: company.legalName,
   description: company.description,
   url: Astro.site?.toString(),
   telephone: company.phoneHref,
   email: company.email,
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'IČO',
+    value: company.ico
+  },
   address: {
     '@type': 'PostalAddress',
     streetAddress: company.address.street,
@@ -39,8 +48,15 @@ const localBusiness = {
     postalCode: company.address.postalCode,
     addressCountry: company.address.country
   },
-  areaServed: company.areaServed.map((name) => ({ '@type': 'City', name })),
-  image
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: company.geo.latitude,
+    longitude: company.geo.longitude
+  },
+  hasMap: company.links.googleMaps,
+  sameAs: [company.links.googleMaps, company.links.firmy],
+  areaServed: company.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+  image: absoluteImage
 };
 
 const schemas = jsonLd ? [localBusiness, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : [localBusiness];
@@ -53,13 +69,14 @@ const schemas = jsonLd ? [localBusiness, ...(Array.isArray(jsonLd) ? jsonLd : [j
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="cs_CZ" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={absoluteImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#174c38" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

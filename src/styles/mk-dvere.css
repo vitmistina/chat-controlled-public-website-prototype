@@ -1,0 +1,13 @@
+.hero__media--map { background: #dbe5df; }
+.hero__media--map iframe,
+.map-card iframe { width: 100%; height: 100%; min-height: 32rem; border: 0; display: block; }
+.map-card { min-height: 32rem; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #dbe5df; }
+.feature-list { padding-left: 1.2rem; color: var(--muted); }
+.feature-list li { margin: .65rem 0; }
+.link-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+
+@media (max-width: 640px) {
+  .hero__media--map iframe,
+  .map-card iframe,
+  .map-card { min-height: 22rem; }
+}

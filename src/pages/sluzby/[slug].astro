@@ -7,38 +7,80 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+const serviceImages: Record<string, { src: string; alt: string }> = {
+  'interierove-dvere-a-zarubne': {
+    src: '/images/doors-interior.jpg',
+    alt: 'Otevřené interiérové dveře ve světlém moderním prostoru'
+  },
+  'okna-a-vchodove-dvere': {
+    src: '/images/windows-and-floor.jpg',
+    alt: 'Světlý interiér s velkými okny, dveřmi a dřevěnou podlahou'
+  },
+  podlahy: {
+    src: '/images/wood-floor.jpg',
+    alt: 'Detail přirozené kresby dřevěné podlahy'
+  },
+  'dverni-kovani': {
+    src: '/images/doors-interior.jpg',
+    alt: 'Interiérové dveře s klikou v moderním prostoru'
+  }
+};
+const serviceImage = serviceImages[service.slug] ?? {
+  src: '/images/showroom-interior.jpg',
+  alt: 'Interiér s dveřmi, okny a dřevěnou podlahou'
+};
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: service.title,
   description: service.description,
   areaServed: company.areaServed,
-  provider: { '@type': 'HomeAndConstructionBusiness', name: company.name }
+  provider: { '@type': 'Store', name: company.name }
 };
 ---
-<BaseLayout title={service.title} description={`${service.description} Týniště nad Orlicí, Rychnov nad Kněžnou, Hradec Králové a okolí.`} jsonLd={serviceSchema}>
+<BaseLayout title={`${service.title} | showroom Týniště nad Orlicí`} description={`${service.description} Navštivte showroom MK Dveře na Mostecké 24 v Týništi nad Orlicí.`} jsonLd={serviceSchema} image={serviceImage.src}>
   <header class="page-hero container">
-    <p class="breadcrumbs"><a href="/">Domů</a> / <a href="/sluzby">Služby</a> / {service.title}</p>
-    <p class="eyebrow">{service.lead}</p>
+    <p class="breadcrumbs"><a href="/">Domů</a> / <a href="/sluzby">Sortiment</a> / {service.title}</p>
+    <p class="eyebrow">Showroom v Týništi nad Orlicí</p>
     <h1 class="display">{service.title}</h1>
     <p class="lead">{service.description}</p>
   </header>
   <section class="section section--white">
     <div class="container split">
       <div class="prose">
-        <h2>Co může být součástí zakázky</h2>
+        <h2>Prohlédněte si varianty naživo</h2>
+        <p>{service.lead}</p>
         <ul>
-          <li>Zaměření a praktická konzultace řešení.</li>
-          <li>Příprava rozpočtu a posloupnosti jednotlivých prací.</li>
-          <li>Dodávka nebo koordinace materiálů a navazujících profesí.</li>
-          <li>Průběžná komunikace a závěrečné předání.</li>
+          <li>Porovnejte skutečné dekory, povrchy, rozměry a detaily.</li>
+          <li>Přineste fotografie, půdorys nebo základní rozměry prostoru.</li>
+          <li>Sladíte řešení s dveřmi, zárubněmi, kováním, okny a podlahou.</li>
+          <li>Další postup, zaměření, dodání a případnou montáž probereme podle vybraného produktu.</li>
         </ul>
-        <h2>Kde pracujeme</h2>
-        <p>{company.areaServed.join(', ')} a okolní obce podle rozsahu zakázky.</p>
-        <p><a class="btn" href={`tel:${company.phoneHref}`}>Probrat zakázku po telefonu</a></p>
+        <h2>Kde nás najdete</h2>
+        <p>Showroom MK Dveře, {company.address.street}, {company.address.postalCode} {company.address.city}.</p>
+        <p><a class="btn" href={`tel:${company.phoneHref}`}>Domluvit návštěvu showroomu</a></p>
       </div>
       <div class="split__media">
-        <img src="https://images.pexels.com/photos/32990521/pexels-photo-32990521.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Řemeslník uvnitř rekonstruovaného domu" loading="lazy" width="1200" height="900" referrerpolicy="no-referrer" />
+        <img src={serviceImage.src} alt={serviceImage.alt} loading="eager" width="1600" height="1100" />
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container split">
+      <div class="map-card">
+        <iframe
+          src={company.links.googleMapsEmbed}
+          title={`MK Dveře – ${service.title} v Týništi nad Orlicí`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+      <div>
+        <p class="eyebrow">Mostecká 24</p>
+        <h2 class="h2">Sortiment si prohlédnete v showroomu MK Dveře.</h2>
+        <p class="lead">Před cestou doporučujeme zavolat a domluvit čas návštěvy, zejména pokud chcete podrobnější konzultaci konkrétního projektu.</p>
+        <p><a class="btn" href={company.links.googleMaps} target="_blank" rel="noreferrer">Navigovat do showroomu</a></p>
       </div>
     </div>
   </section>
