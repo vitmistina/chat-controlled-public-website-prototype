@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { company, services } from '../data/company';
 ---
-<BaseLayout title="Showroom dveří, oken a podlah v Týništi nad Orlicí" description={company.description}>
+<BaseLayout title="Showroom dveří, oken a podlah v Týništi nad Orlicí" description={company.description} image="/images/showroom-interior.jpg">
   <section class="hero">
     <div class="hero__copy">
       <p class="eyebrow">Mostecká 24, Týniště nad Orlicí</p>
@@ -13,13 +13,13 @@ import { company, services } from '../data/company';
         <a class="btn btn--ghost" style="color:white;border-color:white" href={`tel:${company.phoneHref}`}>Zavolat {company.phoneDisplay}</a>
       </div>
     </div>
-    <div class="hero__media hero__media--map">
-      <iframe
-        src={company.links.googleMapsEmbed}
-        title="MK Dveře, showroom dveří, oken a podlah v Týništi nad Orlicí"
-        loading="eager"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen></iframe>
+    <div class="hero__media">
+      <img
+        src="/images/showroom-interior.jpg"
+        alt="Světlý interiér s dveřmi, velkými okny a dřevěnou podlahou jako ukázka sortimentu showroomu"
+        width="1800"
+        height="1200"
+        fetchpriority="high" />
       <div class="hero__badge">500 m² · přes 70 vystavených dveří a setů</div>
     </div>
   </section>
