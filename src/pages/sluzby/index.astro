@@ -2,19 +2,19 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { services } from '../../data/company';
 ---
-<BaseLayout title="Stavební služby a rekonstrukce" description="Rekonstrukce koupelen a interiérů, obklady, dlažby a showroom materiálů v Týništi nad Orlicí a okolí.">
+<BaseLayout title="Dveře, okna, podlahy a kování" description="Interiérové a vchodové dveře, zárubně, okna, podlahy a kování v showroomu MK Dveře v Týništi nad Orlicí.">
   <header class="page-hero container">
-    <p class="breadcrumbs"><a href="/">Domů</a> / Služby</p>
-    <p class="eyebrow">Služby</p>
-    <h1 class="display">Od hrubé práce po čistý detail.</h1>
-    <p class="lead">Rozsah vždy skládáme podle konkrétního prostoru. Níže jsou hlavní oblasti, které umíme dodat samostatně i jako jeden koordinovaný celek.</p>
+    <p class="breadcrumbs"><a href="/">Domů</a> / Sortiment</p>
+    <p class="eyebrow">Showroom MK Dveře</p>
+    <h1 class="display">Dveře, okna, podlahy a kování na jednom místě.</h1>
+    <p class="lead">Produkty si můžete prohlédnout v reálném měřítku, porovnat jejich povrchy a sladit dveře, zárubně, kování, okna a podlahu do jednoho interiéru.</p>
   </header>
   <section class="section section--white">
     <div class="container grid grid--2">
       {services.map((service, index) => (
         <article class="card service-card">
           <span class="service-card__number">0{index + 1}</span>
-          <div><h2>{service.title}</h2><p>{service.description}</p><p style="margin-top:1rem"><a href={`/sluzby/${service.slug}`}>Detail služby</a></p></div>
+          <div><h2>{service.title}</h2><p>{service.description}</p><p style="margin-top:1rem"><a href={`/sluzby/${service.slug}`}>Více informací</a></p></div>
         </article>
       ))}
     </div>
