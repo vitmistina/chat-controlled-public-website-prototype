@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare:images": "node scripts/fetch-images.mjs",
+    "predev": "npm run prepare:images",
     "dev": "astro dev",
+    "prebuild": "npm run prepare:images",
     "build": "astro build",
     "preview": "astro preview"
   },
