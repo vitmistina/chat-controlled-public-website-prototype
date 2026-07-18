@@ -1,73 +1,72 @@
 export const company = {
-  name: 'Orlice Stavby & Interiéry',
-  legalName: 'Doplňte právní název firmy s.r.o.',
-  tagline: 'Rekonstrukce, koupelny a showroom v Týništi nad Orlicí',
+  name: 'MK Dveře',
+  legalName: 'MK dveře podlahy s.r.o.',
+  tagline: 'Showroom dveří, oken a podlah v Týništi nad Orlicí',
   description:
-    'Kompletní rekonstrukce interiérů, koupelen a stavební práce v Týništi nad Orlicí, Hradci Králové a okolí. Návrh materiálů si můžete prohlédnout v našem showroomu.',
-  phoneDisplay: '+420 777 123 456',
-  phoneHref: '+420777123456',
-  email: 'info@doplnit-domenu.cz',
-  ico: 'DOPLNIT',
+    'MK Dveře provozuje v Týništi nad Orlicí showroom oken, interiérových a vchodových dveří, podlah a kování. Na ploše 500 m² si můžete prohlédnout a porovnat více než 70 vystavených dveří a setů.',
+  phoneDisplay: '+420 736 513 520',
+  phoneHref: '+420736513520',
+  email: 'info@mkdvere.cz',
+  ico: '24010227',
   address: {
-    street: 'Doplňte ulici a číslo',
+    street: 'Mostecká 24',
     city: 'Týniště nad Orlicí',
     postalCode: '517 21',
     country: 'CZ'
   },
-  openingHours: [
-    ['Pondělí', '8:00–17:00'],
-    ['Úterý', '8:00–17:00'],
-    ['Středa', '8:00–17:00'],
-    ['Čtvrtek', '8:00–17:00'],
-    ['Pátek', '8:00–15:00'],
-    ['Sobota', 'Po domluvě']
-  ],
+  geo: {
+    latitude: 50.1496018,
+    longitude: 16.0683333
+  },
+  visitNote: 'Návštěvu showroomu doporučujeme předem domluvit telefonicky.',
   areaServed: [
     'Týniště nad Orlicí',
     'Kostelec nad Orlicí',
     'Rychnov nad Kněžnou',
     'Hradec Králové',
-    'Holice'
+    'Královéhradecký kraj'
   ],
-  social: {
-    googleBusiness: '#',
-    mapy: '#',
-    instagram: '#',
-    facebook: '#'
+  links: {
+    googleMaps:
+      'https://www.google.com/maps/place/MK+Dve%C5%99e,+Mosteck%C3%A1+24,+517+21+T%C3%BDni%C5%A1t%C4%9B+nad+Orlic%C3%AD/@50.1496018,16.0683333,16z/data=!4m6!3m5!1s0x470dd9a80778738f:0x239d2f797192520!8m2!3d50.1496018!4d16.0683333!16s%2Fg%2F11z6810vxq',
+    googleMapsEmbed:
+      'https://www.google.com/maps?q=MK+Dve%C5%99e,+Mosteck%C3%A1+24,+517+21+T%C3%BDni%C5%A1t%C4%9B+nad+Orlic%C3%AD&output=embed',
+    firmy:
+      'https://www.firmy.cz/detail/14039675-mk-dvere-podlahy-s-r-o-tyniste-nad-orlici.html'
   }
 } as const;
 
 export const services = [
   {
-    slug: 'rekonstrukce-koupelen',
-    title: 'Rekonstrukce koupelen',
-    lead: 'Od demontáže přes rozvody a hydroizolaci až po poslední spáru.',
+    slug: 'interierove-dvere-a-zarubne',
+    title: 'Interiérové dveře a zárubně',
+    lead: 'Více než 70 vystavených dveří a setů pro skutečné porovnání dekorů, konstrukcí a detailů.',
     description:
-      'Kompletní rekonstrukce koupelen na klíč, včetně koordinace řemesel, obkladů, sanity a finálního předání.',
-    icon: 'bath'
+      'Interiérové dveře, zárubně a různé varianty provedení si prohlédnete přímo v showroomu MK Dveře v Týništi nad Orlicí.',
+    icon: 'door'
   },
   {
-    slug: 'rekonstrukce-interieru',
-    title: 'Rekonstrukce interiérů',
-    lead: 'Byty, domy i menší komerční prostory bez chaosu mezi řemesly.',
+    slug: 'okna-a-vchodove-dvere',
+    title: 'Okna a vchodové dveře',
+    lead: 'Porovnání profilů, povrchů a řešení pro novostavby i rekonstrukce.',
     description:
-      'Stavební úpravy, podlahy, omítky, příčky, elektroinstalace a koordinace navazujících profesí.',
-    icon: 'home'
+      'V showroomu nabízíme výběr oken a vchodových dveří a konzultaci vhodného řešení pro konkrétní dům nebo byt.',
+    icon: 'window'
   },
   {
-    slug: 'obklady-a-dlazby',
-    title: 'Obklady a dlažby',
-    lead: 'Přesná pokládka běžných i velkoformátových materiálů.',
+    slug: 'podlahy',
+    title: 'Podlahy',
+    lead: 'Vzorky podlah můžete posoudit vedle dveří a dalších prvků interiéru.',
     description:
-      'Pokládka obkladů a dlažeb, příprava podkladu, hydroizolace, spárování a řešení detailů.',
-    icon: 'tiles'
+      'Vyberte podlahu podle vzhledu, způsobu používání prostoru a návaznosti na dveře, zárubně a další materiály.',
+    icon: 'floor'
   },
   {
-    slug: 'showroom',
-    title: 'Showroom materiálů',
-    lead: 'Materiály si prohlédnete vedle sebe, ne jen na displeji telefonu.',
+    slug: 'dverni-kovani',
+    title: 'Dveřní kování',
+    lead: 'Kliky a další detaily, které rozhodují o vzhledu i každodenním používání dveří.',
     description:
-      'Výběr obkladů, dlažeb, sanity a povrchů s praktickou konzultací pro konkrétní prostor.',
-    icon: 'showroom'
+      'Vystavené dveře můžete rovnou porovnat s různými variantami kování a vybrat sourodou kombinaci pro celý interiér.',
+    icon: 'handle'
   }
 ] as const;
