@@ -17,7 +17,7 @@ interface Props {
 const {
   title,
   description,
-  image,
+  image = '/images/showroom-interior.jpg',
   canonicalPath = Astro.url.pathname,
   jsonLd,
   noindex = false
@@ -25,6 +25,7 @@ const {
 
 const canonical = new URL(canonicalPath, Astro.site);
 const fullTitle = title === company.name ? title : `${title} | ${company.name}`;
+const absoluteImage = new URL(image, Astro.site).toString();
 
 const localBusiness = {
   '@context': 'https://schema.org',
@@ -55,7 +56,7 @@ const localBusiness = {
   hasMap: company.links.googleMaps,
   sameAs: [company.links.googleMaps, company.links.firmy],
   areaServed: company.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
-  ...(image ? { image: new URL(image, Astro.site).toString() } : {})
+  image: absoluteImage
 };
 
 const schemas = jsonLd ? [localBusiness, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : [localBusiness];
@@ -75,8 +76,8 @@ const schemas = jsonLd ? [localBusiness, ...(Array.isArray(jsonLd) ? jsonLd : [j
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
-    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta property="og:image" content={absoluteImage} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#174c38" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
