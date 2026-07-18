@@ -20,7 +20,7 @@ const projectSchema = {
   contentLocation: { '@type': 'Place', name: project.data.location }
 };
 ---
-<BaseLayout title={project.data.title} description={project.data.description} image={project.data.coverImage} jsonLd={projectSchema}>
+<BaseLayout noindex={true} title={project.data.title} description={project.data.description} image={project.data.coverImage} jsonLd={projectSchema}>
   <header class="page-hero container">
     <p class="breadcrumbs"><a href="/">Domů</a> / <a href="/realizace">Realizace</a> / {project.data.title}</p>
     <p class="eyebrow">{project.data.location} · {project.data.completedAt}</p>
